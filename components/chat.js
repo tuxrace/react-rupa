@@ -28,10 +28,21 @@ if (recognizing) {
     toky.stop();
 }
 
-const autoScroll = {
-    height: '300px',
+const autoScroll = {    
+    minHeight:300,    
     overflowY: 'scroll',
-    padding: 40
+    padding: 20,
+    flex:1
+}
+
+const flex = {
+
+    display: 'flex',
+    flexFlow: 'column',
+    width: '100%',
+    height: 'calc(100% - 5px)',        
+    position:'absolute'
+
 }
 
 const localstate = {};
@@ -51,7 +62,7 @@ export default class Chat extends React.Component {
             typing: false,
             interim: null
         }
-    }    
+    }
     componentDidUpdate() {
         const div = this.divList
         div.scrollTop = 100
@@ -88,7 +99,7 @@ export default class Chat extends React.Component {
     handleMessage(chats) {
         if (chats) {
             localstate.chats = chats
-            let last = chats[chats.length - 1]            
+            let last = chats[chats.length - 1]
             if (last.sender == 'user') {
                 this.setState({ typing: true })
             } else {
@@ -109,9 +120,9 @@ export default class Chat extends React.Component {
         this.setState({ voice: 'Begin Speaking' })
     }
     render() {
-        return (<Paper zDepth={1}>
-            <AppBar style={style} title="RUPA"  /> 
-            
+        return (<Paper zDepth={1} style={flex}>
+            <AppBar style={style} title="RUPA"  />
+
             <div style={autoScroll} ref={(div) => this.divList = div}>
                 <Message chats={localstate.chats} session={session} />
                 {this.state.typing ? <Typing /> : null}

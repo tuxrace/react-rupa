@@ -21582,9 +21582,20 @@
 	}
 
 	var autoScroll = {
-	    height: '300px',
+	    minHeight: 300,
 	    overflowY: 'scroll',
-	    padding: 40
+	    padding: 20,
+	    flex: 1
+	};
+
+	var flex = {
+
+	    display: 'flex',
+	    flexFlow: 'column',
+	    width: '100%',
+	    height: 'calc(100% - 5px)',
+	    position: 'absolute'
+
 	};
 
 	var localstate = {};
@@ -21696,7 +21707,7 @@
 
 	            return _react2.default.createElement(
 	                _Paper2.default,
-	                { zDepth: 1 },
+	                { zDepth: 1, style: flex },
 	                _react2.default.createElement(_AppBar2.default, { style: style, title: 'RUPA' }),
 	                _react2.default.createElement(
 	                    'div',
@@ -41795,15 +41806,15 @@
 	            var list = this.props.text.map(function (res) {
 	                return _react2.default.createElement(
 	                    'li',
-	                    null,
+	                    { style: { float: 'left' } },
 	                    _react2.default.createElement(
 	                        'p',
 	                        null,
-	                        res.address
+	                        res.addresss
 	                    ),
 	                    _react2.default.createElement(
 	                        'iframe',
-	                        { width: '300', height: '300', frameborder: '0', src: "https://www.google.com/maps/embed/v1/streetview?key=AIzaSyCzpbgoECGhplawnFLBNgCVStWyMY30Ku8&location=" + res.latlon + "&heading=210&pitch=10&fov=35" },
+	                        { width: '160', height: '160', frameborder: '0', src: "https://www.google.com/maps/embed/v1/streetview?key=AIzaSyCzpbgoECGhplawnFLBNgCVStWyMY30Ku8&location=" + res.latlon + "&heading=210&pitch=10&fov=35" },
 	                        ' '
 	                    )
 	                );
