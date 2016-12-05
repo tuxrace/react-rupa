@@ -9,4 +9,4 @@
  - Bluemix
  
 ### Working demo
-[https://methodcase.github.io/rupa/](https://methodcase.github.io/rupa/)
+[https://tuxrace.github.io/rupa/](https://tuxrace.github.io/rupa/)
