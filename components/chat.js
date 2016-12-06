@@ -28,19 +28,19 @@ if (recognizing) {
     toky.stop();
 }
 
-const autoScroll = {    
-    minHeight:300,    
+const autoScroll = {
+    minHeight: 300,
     overflowY: 'scroll',
     padding: 20,
-    flex:1
+    flex: 1
 }
 
 const flex = {
     display: 'flex',
     flexFlow: 'column',
     width: '100%',
-    height: 'calc(100% - 5px)',        
-    position:'relative'
+    height: 'calc(100% - 5px)',
+    position: 'relative'
 }
 
 const localstate = {};
@@ -118,9 +118,8 @@ export default class Chat extends React.Component {
         this.setState({ voice: 'Begin Speaking' })
     }
     render() {
-        return (<div>        
-        <Paper zDepth={1} style={flex}>
-            <AppBar style={style} title="RUPA"  />
+        return (<Paper zDepth={1} style={flex}>
+            <AppBar style={style} title="RUPA" />
 
             <div style={autoScroll} ref={(div) => this.divList = div}>
                 <Message chats={localstate.chats} session={session} />
@@ -139,8 +138,7 @@ export default class Chat extends React.Component {
                 <RaisedButton primary style={{ flex: 1 }} label="Submit Message" onClick={this.handleSend.bind(this)} />
                 <RaisedButton secondary label={this.state.voice} onClick={this.handleStart.bind(this)} > </RaisedButton>
             </div>
-
-        </Paper></div>)
+        </Paper>)
     }
 
 }

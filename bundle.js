@@ -21704,37 +21704,33 @@
 	            var _this3 = this;
 
 	            return _react2.default.createElement(
-	                'div',
-	                null,
+	                _Paper2.default,
+	                { zDepth: 1, style: flex },
+	                _react2.default.createElement(_AppBar2.default, { style: style, title: 'RUPA' }),
 	                _react2.default.createElement(
-	                    _Paper2.default,
-	                    { zDepth: 1, style: flex },
-	                    _react2.default.createElement(_AppBar2.default, { style: style, title: 'RUPA' }),
+	                    'div',
+	                    { style: autoScroll, ref: function ref(div) {
+	                            return _this3.divList = div;
+	                        } },
+	                    _react2.default.createElement(_message2.default, { chats: localstate.chats, session: session }),
+	                    this.state.typing ? _react2.default.createElement(_typing2.default, null) : null,
+	                    this.state.interim ? this.state.interim : null
+	                ),
+	                _react2.default.createElement(_Divider2.default, { inset: true }),
+	                _react2.default.createElement(_TextField2.default, { style: { padding: '10px' },
+	                    hintText: 'Type something...',
+	                    fullWidth: true,
+	                    onKeyPress: this.handleEnter.bind(this),
+	                    onChange: this.handleTextChange.bind(this)
+	                }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { style: { display: 'flex', flexFlow: 'row' } },
+	                    _react2.default.createElement(_RaisedButton2.default, { primary: true, style: { flex: 1 }, label: 'Submit Message', onClick: this.handleSend.bind(this) }),
 	                    _react2.default.createElement(
-	                        'div',
-	                        { style: autoScroll, ref: function ref(div) {
-	                                return _this3.divList = div;
-	                            } },
-	                        _react2.default.createElement(_message2.default, { chats: localstate.chats, session: session }),
-	                        this.state.typing ? _react2.default.createElement(_typing2.default, null) : null,
-	                        this.state.interim ? this.state.interim : null
-	                    ),
-	                    _react2.default.createElement(_Divider2.default, { inset: true }),
-	                    _react2.default.createElement(_TextField2.default, { style: { padding: '10px' },
-	                        hintText: 'Type something...',
-	                        fullWidth: true,
-	                        onKeyPress: this.handleEnter.bind(this),
-	                        onChange: this.handleTextChange.bind(this)
-	                    }),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { style: { display: 'flex', flexFlow: 'row' } },
-	                        _react2.default.createElement(_RaisedButton2.default, { primary: true, style: { flex: 1 }, label: 'Submit Message', onClick: this.handleSend.bind(this) }),
-	                        _react2.default.createElement(
-	                            _RaisedButton2.default,
-	                            { secondary: true, label: this.state.voice, onClick: this.handleStart.bind(this) },
-	                            ' '
-	                        )
+	                        _RaisedButton2.default,
+	                        { secondary: true, label: this.state.voice, onClick: this.handleStart.bind(this) },
+	                        ' '
 	                    )
 	                )
 	            );
