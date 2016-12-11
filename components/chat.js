@@ -45,8 +45,6 @@ const flex = {
 
 const localstate = {};
 socket.emit('system', { sender: 'system', data: 'initialize' })
-sessionStorage.setItem('session', Math.random().toString(36).substring(2, 8));
-const session = sessionStorage.getItem('session');
 
 export default class Chat extends React.Component {
     constructor(props) {
@@ -119,7 +117,7 @@ export default class Chat extends React.Component {
     }
     render() {
         return (<Paper zDepth={1} style={flex}>
-            <AppBar style={style} title="RUPA" />
+            <AppBar style={style} title="RUPANess" />
 
             <div style={autoScroll} ref={(div) => this.divList = div}>
                 <Message chats={localstate.chats} session={session} />
