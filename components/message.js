@@ -22,11 +22,11 @@ export default class Message extends React.Component {
                 console.log(typeof (x.data))
                 if (x.type == 'html') {
                     list.push(<ListItem key={Math.random()} leftAvatar={
-                        <Avatar src="rupa.png" />
+                        <Avatar src="images/rupa.png" />
                     }> <Dview right={false} text={x.data} /> </ListItem>)
                 } else {
                     list.push(<ListItem key={Math.random()} leftAvatar={
-                        <Avatar src="rupa.png" />
+                        <Avatar src="images/rupa.png" />
                     }> <Bubble right={false} text={x.data} /> </ListItem>)
                 }
 
@@ -36,8 +36,7 @@ export default class Message extends React.Component {
                 }> <Bubble right={true} text={x.data} /> </ListItem>)
             }
         })
-        if (sessionStorage.getItem('session') != nextProps.session)
-            list.pop()
+        
         this.setState({ data: list })
     }
     render() {

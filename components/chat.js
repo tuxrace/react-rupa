@@ -101,11 +101,8 @@ export default class Chat extends React.Component {
             } else {
                 this.setState({ typing: false })
             }
-
-            if (chats.session == session) {
-                console.table(chats)
-                this.setState({ chats: chats })
-            }
+            this.setState({ chats: chats })
+            
         }
     }
     handleStart() {
@@ -117,10 +114,10 @@ export default class Chat extends React.Component {
     }
     render() {
         return (<Paper zDepth={1} style={flex}>
-            <AppBar style={style} title="RUPANess" />
+            <AppBar style={style} title="RUPA" />
 
             <div style={autoScroll} ref={(div) => this.divList = div}>
-                <Message chats={localstate.chats} session={session} />
+                <Message chats={localstate.chats} />
                 {this.state.typing ? <Typing /> : null}
                 {this.state.interim ? this.state.interim : null}
             </div>
