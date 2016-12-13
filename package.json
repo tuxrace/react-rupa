@@ -24,7 +24,5 @@
     "socket.io": "^1.5.1",
     "watson-developer-cloud": "^2.8.2"
   },
-  "devDependencies": {
-    "react-native": "^0.39.2"
-  }
+  "devDependencies": {}
 }

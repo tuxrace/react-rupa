@@ -1,19 +1,18 @@
-import React from 'react'
+import React,{Component} from 'react'
 import { List, ListItem } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
 import Bubble from './bubble.js';
 import Dview from './dview.js';
-
 import {
     grey900
 } from 'material-ui/styles/colors';
 
-export default class Message extends React.Component {
+export default class Message extends Component {
     constructor(props) {
         super(props)
         this.state = { data: "" }
     }
-    
+
     componentWillReceiveProps(nextProps) {
         let chats = nextProps.chats
         let list = [];
@@ -40,7 +39,7 @@ export default class Message extends React.Component {
         this.setState({ data: list })
     }
     render() {
-        return <div>{this.state.data}</div>
+        return <div>{this.state.data}</div>        
     }
 }
 

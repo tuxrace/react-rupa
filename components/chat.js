@@ -28,7 +28,7 @@ if (recognizing) {
 const localstate = {};
 socket.emit('system', { sender: 'system', data: 'initialize' })
 
-export default class Chat extends React.Component {
+export default class Chat extends Component {
     constructor(props) {
         console.log(flex)
         super(props)
@@ -110,9 +110,7 @@ export default class Chat extends React.Component {
                 <Message chats={localstate.chats} />
                 {this.state.typing ? <Typing /> : null}
                 {this.state.interim ? this.state.interim : null}
-            </div>
-
-            <Divider inset />
+            </div>            
             <Text {...textProps} />
             <div style={{ display: 'flex', flexFlow: 'row' }}>
                 <RaisedButton primary style={{ flex: 1 }} label="Submit Message" onClick={this.handleSend.bind(this)} />
