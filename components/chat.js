@@ -13,14 +13,10 @@ import FontIcon from 'material-ui/FontIcon';
 import Message from './message.js'
 import Typing from './typing.js'
 import Menu from './menu.js'
-import {autoScroll, flex} from './style.js'
+import {autoScroll, flex, style} from './style.js'
 import Toky from '../toky.js'
 
 injectTapEventPlugin();
-
-const style = {
-    backgroundColor: '#b71c1c'
-}
 
 const toky = new Toky();
 const recognizing = false;
