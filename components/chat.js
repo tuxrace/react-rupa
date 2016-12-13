@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Component} from 'react'
 //var socket = require('socket.io-client')(`http://${location.hostname}:6007`)
 var socket = require('socket.io-client')(`https://rupamessage.mybluemix.net/`)
 import injectTapEventPlugin from 'react-tap-event-plugin';
