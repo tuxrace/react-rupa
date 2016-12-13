@@ -13,6 +13,7 @@ import FontIcon from 'material-ui/FontIcon';
 import Message from './message.js'
 import Typing from './typing.js'
 import Menu from './menu.js'
+import {autoScroll, flex} from './style.js'
 import Toky from '../toky.js'
 
 injectTapEventPlugin();
@@ -28,26 +29,12 @@ if (recognizing) {
     toky.stop();
 }
 
-const autoScroll = {
-    minHeight: 300,
-    overflowY: 'scroll',
-    padding: 20,
-    flex: 1
-}
-
-const flex = {
-    display: 'flex',
-    flexFlow: 'column',
-    width: '100%',
-    height: 'calc(100% - 5px)',
-    position:'absolute'    
-}
-
 const localstate = {};
 socket.emit('system', { sender: 'system', data: 'initialize' })
 
 export default class Chat extends React.Component {
     constructor(props) {
+        console.log(flex)
         super(props)
         this.handleMessage = this.handleMessage.bind(this)
         socket.on('message', this.handleMessage)
