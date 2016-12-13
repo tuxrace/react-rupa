@@ -13,7 +13,7 @@ export default class Message extends React.Component {
         super(props)
         this.state = { data: "" }
     }
-
+    
     componentWillReceiveProps(nextProps) {
         let chats = nextProps.chats
         let list = [];

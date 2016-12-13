@@ -6,14 +6,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
 import Snackbar from 'material-ui/Snackbar';
 import FontIcon from 'material-ui/FontIcon';
 import Message from './message.js'
 import Typing from './typing.js'
 import Menu from './menu.js'
-import {autoScroll, flex, style} from './style.js'
+import Text from './text.js'
+import { autoScroll, flex, style } from './style.js'
 import Toky from '../toky.js'
 
 injectTapEventPlugin();
@@ -85,7 +85,7 @@ export default class Chat extends React.Component {
                 this.setState({ typing: false })
             }
             this.setState({ chats: chats })
-            
+
         }
     }
     handleStart() {
@@ -96,6 +96,13 @@ export default class Chat extends React.Component {
         this.setState({ voice: 'Begin Speaking' })
     }
     render() {
+        const textProps = {
+            style: { padding: '10px' },
+            hintText: "Type something to talk to Rupa...",
+            fullWidth: true,
+            onKeyPress: this.handleEnter.bind(this),
+            onChange: this.handleTextChange.bind(this)
+        }
         return (<Paper zDepth={1} style={flex}>
             <AppBar style={style} title="RUPA" />
 
@@ -106,12 +113,7 @@ export default class Chat extends React.Component {
             </div>
 
             <Divider inset />
-            <TextField style={{ padding: '10px' }}
-                hintText="Type something..."
-                fullWidth
-                onKeyPress={this.handleEnter.bind(this)}
-                onChange={this.handleTextChange.bind(this)}
-                />
+            <Text {...textProps} />
             <div style={{ display: 'flex', flexFlow: 'row' }}>
                 <RaisedButton primary style={{ flex: 1 }} label="Submit Message" onClick={this.handleSend.bind(this)} />
                 <RaisedButton secondary label={this.state.voice} onClick={this.handleStart.bind(this)} > </RaisedButton>
