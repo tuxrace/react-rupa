@@ -110,7 +110,7 @@ export default class Chat extends Component {
                 <Message chats={localstate.chats} />
                 {this.state.typing ? <Typing /> : null}
                 {this.state.interim ? this.state.interim : null}
-            </div>            
+            </div>                        
             <Text {...textProps} />
             <div style={{ display: 'flex', flexFlow: 'row' }}>
                 <RaisedButton primary style={{ flex: 1 }} label="Submit Message" onClick={this.handleSend.bind(this)} />
