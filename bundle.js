@@ -21700,7 +21700,7 @@
 	            return _react2.default.createElement(
 	                _Paper2.default,
 	                { zDepth: 1, style: _style.flex },
-	                _react2.default.createElement(_AppBar2.default, { style: _style.style, title: 'RUPA' }),
+	                _react2.default.createElement(_AppBar2.default, { style: _style.style, title: 'RUPA Test' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { style: _style.autoScroll, ref: function ref(div) {

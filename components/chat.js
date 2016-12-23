@@ -104,7 +104,7 @@ export default class Chat extends Component {
             onChange: this.handleTextChange.bind(this)
         }
         return (<Paper zDepth={1} style={flex}>
-            <AppBar style={style} title="RUPA" />
+            <AppBar style={style} title="RUPA Test" />
 
             <div style={autoScroll} ref={(div) => this.divList = div}>
                 <Message chats={localstate.chats} />
