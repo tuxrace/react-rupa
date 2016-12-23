@@ -29,11 +29,10 @@ const localstate = {};
 socket.emit('system', { sender: 'system', data: 'initialize' })
 
 export default class Chat extends Component {
-    constructor(props) {
-        console.log(flex)
+    constructor(props) {        
         super(props)
-        this.handleMessage = this.handleMessage.bind(this)
-        socket.on('message', this.handleMessage)
+        //this.handleMessage = this.handleMessage.bind(this)
+        socket.on('message', this.handleMessage.bind(this))
         socket.emit('system', { sender: 'system', data: 'initialize' })
         this.state = {
             opensnack: false,
@@ -65,8 +64,7 @@ export default class Chat extends Component {
         socket.emit('add', this.state.msg)
     }
     handleEnter(e) {
-        if (e.key == 'Enter') {
-            console.log('hello')
+        if (e.key == 'Enter') {            
             socket.emit('add', this.state.msg)
             e.target.value = ""
         }
@@ -104,7 +102,7 @@ export default class Chat extends Component {
             onChange: this.handleTextChange.bind(this)
         }
         return (<Paper zDepth={1} style={flex}>
-            <AppBar style={style} title="RUPA Test" />
+            <AppBar style={style} title="RUPA" />
 
             <div style={autoScroll} ref={(div) => this.divList = div}>
                 <Message chats={localstate.chats} />
