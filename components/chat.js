@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 //var socket = require('socket.io-client')(`http://${location.hostname}:6007`)
-var socket = require('socket.io-client')(`https://rupamessage.mybluemix.net/`)
+var socket = require('socket.io-client')(`https://rupamessage1.mybluemix.net/`)
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
@@ -97,7 +97,7 @@ export default class Chat extends Component {
     }
     render() {
         const textProps = {
-            style: { padding: '10px' },
+            style: { padding: '8px' },
             hintText: "Type something to talk to Rupa...",
             fullWidth: true,
             onKeyPress: this.handleEnter.bind(this),
@@ -111,7 +111,7 @@ export default class Chat extends Component {
                 {this.state.typing ? <Typing /> : null}
                 {this.state.interim ? this.state.interim : null}
             </div>                        
-            <Text {...textProps} />
+            <Text {...textProps} />            
             <div style={{ display: 'flex', flexFlow: 'row' }}>
                 <RaisedButton primary style={{ flex: 1 }} label="Submit Message" onClick={this.handleSend.bind(this)} />
                 <RaisedButton secondary label={this.state.voice} onClick={this.handleStart.bind(this)} > </RaisedButton>
