@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-//var socket = require('socket.io-client')(`http://${location.hostname}:6007`)
+//var socket = require('socket.io-client')(`http://${location.hostname}:6010`)
 var socket = require('socket.io-client')(`https://rupamessage1.mybluemix.net/`)
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -64,12 +64,14 @@ export default class Chat extends Component {
         socket.emit('add', this.state.msg)
     }
     handleEnter(e) {
-        if (e.key == 'Enter') {            
+        
+        if (e.key == 'Enter') {         
+            console.log(this.state.msg)   
             socket.emit('add', this.state.msg)
             e.target.value = ""
         }
     }
-    handleTextChange(e) {
+    handleTextChange(e) {        
         this.setState({ msg: e.target.value })
     }
 

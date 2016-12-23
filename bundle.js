@@ -21566,7 +21566,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	//var socket = require('socket.io-client')(`http://${location.hostname}:6007`)
+	//var socket = require('socket.io-client')(`http://${location.hostname}:6010`)
 	var socket = __webpack_require__(456)('https://rupamessage1.mybluemix.net/');
 
 
@@ -21641,7 +21641,9 @@
 	    }, {
 	        key: 'handleEnter',
 	        value: function handleEnter(e) {
+
 	            if (e.key == 'Enter') {
+	                console.log(this.state.msg);
 	                socket.emit('add', this.state.msg);
 	                e.target.value = "";
 	            }
@@ -38934,8 +38936,6 @@
 	    value: true
 	});
 
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(1);
@@ -38985,7 +38985,7 @@
 	            var list = [];
 	            chats.forEach(function (x, index) {
 	                if (x.sender == 'bot') {
-	                    console.log(_typeof(x.data));
+	                    //console.log(typeof (x.data))
 	                    if (x.type == 'html') {
 	                        list.push(_react2.default.createElement(
 	                            _List.ListItem,

@@ -17,8 +17,8 @@ export default class Message extends Component {
         let chats = nextProps.chats
         let list = [];
         chats.forEach((x, index) => {
-            if (x.sender == 'bot') {
-                console.log(typeof (x.data))
+            if (x.sender == 'bot') {                
+                //console.log(typeof (x.data))
                 if (x.type == 'html') {
                     list.push(<ListItem key={Math.random()} leftAvatar={
                         <Avatar src="images/rupa.png" />
