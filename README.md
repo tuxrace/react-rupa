@@ -11,13 +11,21 @@
  - Socket.io
  - Bluemix
  
+### Serve
+
+     webpackdev-server --progress --colors
+     http://localhost:8080
+or 
+     simplehttpserver .
+     http://localhost:8000
+
 ### Build
 
-     webpack ./main.jsx -o 'bundle.js'
+     webpack --progress --colors ./main.js -o 'bundle.js'
 
 ### To Minify
 
-Add this line to webpack.config.js
+Add this entry to webpack.config.js
 
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
