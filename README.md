@@ -16,6 +16,7 @@
      webpackdev-server --progress --colors
      http://localhost:8080
 or 
+
      simplehttpserver .
      http://localhost:8000
 
