@@ -21588,11 +21588,9 @@
 	    function Chat(props) {
 	        _classCallCheck(this, Chat);
 
-	        //this.handleMessage = this.handleMessage.bind(this)
+	        //this.handleMessage = this.handleMessage.bind(this)        
 	        var _this = _possibleConstructorReturn(this, (Chat.__proto__ || Object.getPrototypeOf(Chat)).call(this, props));
 
-	        socket.on('message', _this.handleMessage.bind(_this));
-	        socket.emit('system', { sender: 'system', data: 'initialize' });
 	        _this.state = {
 	            opensnack: false,
 	            voice: _react2.default.createElement(
@@ -21601,12 +21599,22 @@
 	                'mic'
 	            ),
 	            typing: false,
-	            interim: null
+	            interim: null,
+	            chats: [],
+	            loaded: false
+
 	        };
 	        return _this;
 	    }
 
 	    _createClass(Chat, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            socket.on('message', this.handleMessage.bind(this));
+	            socket.emit('system', { sender: 'system', data: 'initialize' });
+	            this.setState({ a: 'b' });
+	        }
+	    }, {
 	        key: 'componentDidUpdate',
 	        value: function componentDidUpdate() {
 	            var _this2 = this;
@@ -21656,16 +21664,13 @@
 	    }, {
 	        key: 'handleMessage',
 	        value: function handleMessage(chats) {
+	            var last = chats[chats.length - 1];
+	            var user = last.sender == 'user' ? true : false;
 	            if (chats) {
 	                localstate.chats = chats;
-	                var last = chats[chats.length - 1];
-	                if (last.sender == 'user') {
-	                    this.setState({ typing: true });
-	                } else {
-	                    this.setState({ typing: false });
-	                }
-	                this.setState({ chats: chats });
+	                this.setState({ typing: user, chats: chats });
 	            }
+	            this.setState({ loaded: true });
 	        }
 	    }, {
 	        key: 'handleStart',
@@ -21697,7 +21702,8 @@
 	                    { style: _style.autoScroll, ref: function ref(div) {
 	                            return _this3.divList = div;
 	                        } },
-	                    _react2.default.createElement(_message2.default, { chats: localstate.chats }),
+	                    this.state.chats.length,
+	                    _react2.default.createElement(_message2.default, { chats: this.state.chats }),
 	                    this.state.typing ? _react2.default.createElement(_typing2.default, null) : null,
 	                    this.state.interim ? this.state.interim : null
 	                ),
@@ -38936,8 +38942,6 @@
 	    value: true
 	});
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -38960,81 +38964,72 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	var Message = function Message(_ref) {
+	    var chats = _ref.chats;
 
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	    var some = chats.map(function (x, index) {
+	        var bot = x.sender == 'bot' ? true : false;
+	        var html = x.type == 'html' ? true : false;
+	        var listProps = {
+	            key: Math.random().toString(),
+	            leftAvatar: bot ? _react2.default.createElement(_Avatar2.default, { src: 'images/rupa.png' }) : _react2.default.createElement('div', null),
+	            rightAvatar: !bot ? _react2.default.createElement(
+	                _Avatar2.default,
+	                { backgroundColor: _colors.grey900, size: 33 },
+	                ' CN '
+	            ) : _react2.default.createElement('div', null),
+	            view: html ? _react2.default.createElement(_dview2.default, { right: false, text: x.data }) : _react2.default.createElement(_bubble2.default, { right: !bot, text: x.data })
+	        };
+	        return _react2.default.createElement(
+	            _List.ListItem,
+	            listProps,
+	            ' ',
+	            listProps.view,
+	            ' '
+	        );
+	    });
+	    return chats.length > 0 ? some : _react2.default.createElement('div', null);
 
-	var Message = function (_Component) {
-	    _inherits(Message, _Component);
-
-	    function Message(props) {
-	        _classCallCheck(this, Message);
-
-	        var _this = _possibleConstructorReturn(this, (Message.__proto__ || Object.getPrototypeOf(Message)).call(this, props));
-
-	        _this.state = { data: "" };
-	        return _this;
-	    }
-
-	    _createClass(Message, [{
-	        key: 'componentWillReceiveProps',
-	        value: function componentWillReceiveProps(nextProps) {
-	            var chats = nextProps.chats;
-	            var list = [];
-	            chats.forEach(function (x, index) {
-	                if (x.sender == 'bot') {
-	                    //console.log(typeof (x.data))
-	                    if (x.type == 'html') {
-	                        list.push(_react2.default.createElement(
-	                            _List.ListItem,
-	                            { key: Math.random(), leftAvatar: _react2.default.createElement(_Avatar2.default, { src: 'images/rupa.png' }) },
-	                            ' ',
-	                            _react2.default.createElement(_dview2.default, { right: false, text: x.data }),
-	                            ' '
-	                        ));
-	                    } else {
-	                        list.push(_react2.default.createElement(
-	                            _List.ListItem,
-	                            { key: Math.random(), leftAvatar: _react2.default.createElement(_Avatar2.default, { src: 'images/rupa.png' }) },
-	                            ' ',
-	                            _react2.default.createElement(_bubble2.default, { right: false, text: x.data }),
-	                            ' '
-	                        ));
-	                    }
-	                } else {
-	                    list.push(_react2.default.createElement(
-	                        _List.ListItem,
-	                        { key: index, rightAvatar: _react2.default.createElement(
-	                                _Avatar2.default,
-	                                { backgroundColor: _colors.grey900, size: 33 },
-	                                ' CN '
-	                            ) },
-	                        ' ',
-	                        _react2.default.createElement(_bubble2.default, { right: true, text: x.data }),
-	                        ' '
-	                    ));
-	                }
-	            });
-
-	            this.setState({ data: list });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                this.state.data
-	            );
-	        }
-	    }]);
-
-	    return Message;
-	}(_react.Component);
+	    /*return chats.map((x, index) => {  
+	                const bot = (x.sender == 'bot')?true:false
+	                const html = (x.type == 'html')?true:false
+	                const listProps = {
+	                    key: Math.random().toString(),
+	                    leftAvatar: bot ? <Avatar src="images/rupa.png" />:<div/>,
+	                    rightAvatar: !bot ? <Avatar backgroundColor={grey900} size={33}> CN </Avatar>:<div/>,
+	                    view: html ? <Dview right={false} text={x.data} /> : <Bubble right={!bot} text={x.data} />
+	                }          
+	                return <ListItem {...listProps}> {listProps.view} </ListItem>                                    
+	        });*/
+	};
 
 	exports.default = Message;
+
+	/*export default class Message extends Component {
+	    constructor(props) {
+	        super()
+	        this.state = { data: "" }
+	    }    
+	    componentWillReceiveProps({ chats }){
+	        console.log(chats)
+	        const list = chats.map((x, index) => {  
+	                const bot = (x.sender == 'bot')?true:false
+	                const html = (x.type == 'html')?true:false
+	                const listProps = {
+	                    key: Math.random().toString(),
+	                    leftAvatar: bot ? <Avatar src="images/rupa.png" />:<div/>,
+	                    rightAvatar: !bot ? <Avatar backgroundColor={grey900} size={33}> CN </Avatar>:<div/>,
+	                    view: html ? <Dview right={false} text={x.data} /> : <Bubble right={!bot} text={x.data} />
+	                }          
+	                return <ListItem {...listProps}> {listProps.view} </ListItem>                                    
+	        });
+	        this.setState({data:list})
+	    }
+	    render() {        
+	        return <div>{this.state.data}</div>                
+	    }
+	}*/
 
 /***/ },
 /* 420 */
@@ -40552,11 +40547,14 @@
 	    top: '20px'
 	};
 
+	var temp = function temp(props) {
+	    return _react2.default.createElement('div', { style: props.right === true ? tri : triRight });
+	};
+
 	var Bubble = function Bubble(props) {
 	    return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('div', { style: props.right === true ? tri : triRight }),
 	        _react2.default.createElement(
 	            'div',
 	            { style: props.right === true ? styleRight : style },

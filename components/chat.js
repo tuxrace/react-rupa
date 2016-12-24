@@ -31,15 +31,21 @@ socket.emit('system', { sender: 'system', data: 'initialize' })
 export default class Chat extends Component {
     constructor(props) {        
         super(props)
-        //this.handleMessage = this.handleMessage.bind(this)
-        socket.on('message', this.handleMessage.bind(this))
-        socket.emit('system', { sender: 'system', data: 'initialize' })
+        //this.handleMessage = this.handleMessage.bind(this)        
         this.state = {
             opensnack: false,
             voice: <FontIcon className="material-icons" style={{ margin: 5, color: 'white' }}>mic</FontIcon>,
             typing: false,
-            interim: null
+            interim: null,
+            chats:[],
+            loaded:false
+            
         }
+    }
+    componentDidMount(){
+        socket.on('message', this.handleMessage.bind(this))
+        socket.emit('system', { sender: 'system', data: 'initialize' })
+        this.setState({ a:'b' })  
     }
     componentDidUpdate() {
         const div = this.divList
@@ -76,17 +82,13 @@ export default class Chat extends Component {
     }
 
     handleMessage(chats) {
+        const last = chats[chats.length - 1]
+        const user = last.sender == 'user' ? true: false;
         if (chats) {
-            localstate.chats = chats
-            let last = chats[chats.length - 1]
-            if (last.sender == 'user') {
-                this.setState({ typing: true })
-            } else {
-                this.setState({ typing: false })
-            }
-            this.setState({ chats: chats })
-
+            localstate.chats = chats            
+            this.setState({ typing: user, chats: chats })                        
         }
+        this.setState({loaded:true})
     }
     handleStart() {
         toky.start()
@@ -107,7 +109,8 @@ export default class Chat extends Component {
             <AppBar style={style} title="RUPA" />
 
             <div style={autoScroll} ref={(div) => this.divList = div}>
-                <Message chats={localstate.chats} />
+            {this.state.chats.length}
+                <Message chats={this.state.chats} />
                 {this.state.typing ? <Typing /> : null}
                 {this.state.interim ? this.state.interim : null}
             </div>                        

@@ -47,9 +47,10 @@ const tri = {
     top: '20px'
 }
 
+const temp = props => <div style={props.right === true ? tri : triRight} />  
+
 const Bubble = props => (
-    <div>
-        <div style={props.right === true ? tri : triRight} />
+    <div>        
         <div style={props.right === true ? styleRight : style}>{props.text}</div>
         <div style={props.right === true ? triRight : tri} />
     </div>
