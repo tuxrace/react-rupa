@@ -13,7 +13,7 @@
  
 ### Serve
 
-     webpackdev-server --progress --colors
+     webpack-dev-server --inline --hot
      http://localhost:8080
 or 
 
@@ -22,11 +22,11 @@ or
 
 ### Build
 
-     webpack --progress --colors ./main.js -o 'bundle.js'
+     webpack --progress --colors --config webpack.config.prod.js -p
 
 ### To Minify
 
-Add this entry to webpack.config.js
+Add this entry to webpack.config.prod.js
 
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
