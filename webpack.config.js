@@ -2,7 +2,11 @@ var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-    entry: './main.js',
+    entry: [
+        "webpack-dev-server/client?http://localhost:8080", // websocket
+        "webpack/hot/only-dev-server", // hot loader
+        "./main.js" // entry file
+    ],
     output: { path: __dirname, filename: 'bundle.js' },    
     module: {
         loaders: [
@@ -13,5 +17,8 @@ module.exports = {
             }
         ]
     },
-    devtool:'cheap-module-eval-source-map'
+    devtool:'cheap-module-eval-source-map',
+    plugins:[
+        new webpack.HotModuleReplacementPlugin()
+    ]
 }
