@@ -40,15 +40,13 @@ export default class Chat extends Component {
             typing: false,
             interim: null,
             chats:[],
-            loaded:false
-            
+            loaded:false            
         }
     }
     componentDidMount(){
         injectTapEventPlugin();
         socket.on('message', this.handleMessage.bind(this))
-        socket.emit('system', { sender: 'system', data: 'initialize' })
-        this.setState({ a:'b' })  
+        socket.emit('system', { sender: 'system', data: 'initialize' })        
     }
     componentDidUpdate() {
         const div = this.divList
@@ -72,18 +70,16 @@ export default class Chat extends Component {
     handleSend(e) {
         socket.emit('add', this.state.msg)
     }
-    handleEnter(e) {
-        
+    handleEnter(e) {                
         if (e.key == 'Enter') {         
             console.log(this.state.msg)   
             socket.emit('add', this.state.msg)
             e.target.value = ""
-        }
+        }        
     }
-    handleTextChange(e) {        
-        this.setState({ msg: e.target.value })
+    handleTextChange(e) {                        
+        this.setState({ msg: e.target.value })               
     }
-
     handleMessage(chats) {
         const last = chats[chats.length - 1]
         const user = last.sender == 'user' ? true: false;
@@ -117,8 +113,8 @@ export default class Chat extends Component {
                 <Message chats={this.state.chats} />
                 {this.state.typing ? <Typing /> : null}
                 {this.state.interim ? this.state.interim : null}
-            </div>                        
-                                  
+            </div>
+
             <div style={{ display: 'flex', justifyContent:'flex-end', width:'100vw'   }}>
                 <Text {...textProps} />                 
                 <RaisedButton style={{height:60,margin:3}} secondary label="Submit Message" onClick={this.handleSend.bind(this)} icon={<ActionCheckCircle />} /> 
@@ -126,5 +122,4 @@ export default class Chat extends Component {
             </div>
         </Paper>)
     }
-
 }
