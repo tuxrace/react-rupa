@@ -22,7 +22,7 @@ or
 
 ### Build
 
-     webpack --progress --colors --config webpack.config.prod.js -p
+     webpack --progress --config webpack.config.prod.js -p
 
 ### To Minify
 
