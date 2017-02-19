@@ -9,14 +9,14 @@ const Menu = () => (
   <div>
     <IconMenu
       iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-      anchorOrigin={{horizontal: 'left', vertical: 'top'}}
-      targetOrigin={{horizontal: 'left', vertical: 'top'}}
+      anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
+      targetOrigin={{ horizontal: 'left', vertical: 'top' }}
     >
-    
+
       <MenuItem primaryText="About Rupa" />
-      <MenuItem primaryText="Info" />      
+      <MenuItem primaryText="Info" />
     </IconMenu>
-    
+
   </div>
 );
 
