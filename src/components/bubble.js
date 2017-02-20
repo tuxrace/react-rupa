@@ -44,7 +44,7 @@ const tri = {
   top: '20px'
 }
 
-const temp = props => <div style={props.right === true ? tri : triRight} />
+//const temp = props => <div style={props.right === true ? tri : triRight} />
 
 const Bubble = props => (
   <div>
@@ -52,5 +52,10 @@ const Bubble = props => (
     <div style={props.right === true ? triRight : tri} />
   </div>
 )
+
+Bubble.propTypes = {
+  right: React.propTypes.boolean,
+  text: React.propTypes.string 
+}
 
 export default Bubble
