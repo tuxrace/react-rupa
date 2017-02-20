@@ -2,26 +2,26 @@ import React, { Component } from 'react'
 // var socket = require('socket.io-client')(`http://${location.hostname}:6010`)
 var socket = require('socket.io-client')(`https://rupamessage1.mybluemix.net/`)
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AppBar from 'material-ui/AppBar'
 import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton'
-import FlatButton from 'material-ui/FlatButton'
-import Divider from 'material-ui/Divider'
-import Snackbar from 'material-ui/Snackbar'
+// import FlatButton from 'material-ui/FlatButton'
+// import Divider from 'material-ui/Divider'
+// import Snackbar from 'material-ui/Snackbar'
 import FontIcon from 'material-ui/FontIcon'
 import IconButton from 'material-ui/IconButton'
 import ActionFace from 'material-ui/svg-icons/action/face'
 import ActionCheckCircle from 'material-ui/svg-icons/action/check-circle'
 import Message from './message.js'
 import Typing from './typing.js'
-import Menu from './menu.js'
+// import Menu from './menu.js'
 import Text from './text.js'
 import { autoScroll, flex, style } from './style.js'
 import Toky from '../services/toky.js'
 
 const toky = new Toky()
-const recognizing = false;
+const recognizing = false
 
 if (recognizing) {
   toky.stop()
@@ -31,7 +31,7 @@ const localstate = {};
 socket.emit('system', { sender: 'system', data: 'initialize' })
 
 export default class Chat extends Component {
-  constructor (props) {
+  constructor(props) {
     super()
     // this.handleMessage = this.handleMessage.bind(this)
     this.state = {
@@ -43,12 +43,12 @@ export default class Chat extends Component {
       loaded: false
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     injectTapEventPlugin()
     socket.on('message', this.handleMessage.bind(this))
     socket.emit('system', { sender: 'system', data: 'initialize' })
   }
-  componentDidUpdate () {
+  componentDidUpdate() {
     const div = this.divList
     div.scrollTop = 100
     toky.onresult((result) => {
@@ -67,36 +67,36 @@ export default class Chat extends Component {
       this.setState({ voice: <FontIcon className="material-icons" style={{ margin: 5, color: 'white' }}>mic</FontIcon> })
     })
   }
-  handleSend (e) {
+  handleSend(e) {
     socket.emit('add', this.state.msg)
   }
-  handleEnter (e) {
+  handleEnter(e) {
     if (e.key === 'Enter') {
       console.log(this.state.msg)
       socket.emit('add', this.state.msg)
       e.target.value = ''
     }
   }
-  handleTextChange (e) {
+  handleTextChange(e) {
     this.setState({ msg: e.target.value })
   }
-  handleMessage (chats) {
+  handleMessage(chats) {
     const last = chats[chats.length - 1]
-    const user = last.sender === 'user' ? true : false
+    const user = last.sender === 'user' && true
     if (chats) {
       localstate.chats = chats
       this.setState({ typing: user, chats: chats })
     }
     this.setState({ loaded: true })
   }
-  handleStart () {
+  handleStart() {
     toky.start()
     toky.onstart(() => {
       console.log('Begin speaking')
     })
     this.setState({ voice: 'Begin Speaking' })
   }
-  render () {
+  render() {
 
     const textProps = {
       style: { padding: 8 },

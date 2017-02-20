@@ -10,8 +10,8 @@ import {
 var Message = function ({ chats }) {
 
   const list = chats.map((x, index) => {
-    const bot = (x.sender == 'bot') ? true : false
-    const html = (x.type == 'html') ? true : false
+    const bot = (x.sender === 'bot') && true
+    const html = (x.type === 'html') && true
     const view = html ? <Dview right={false} text={x.data} /> : <Bubble right={!bot} text={x.data} />
     const listProps = {
       key: Math.random().toString(),

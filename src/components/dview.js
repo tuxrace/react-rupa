@@ -1,9 +1,9 @@
 import React from 'react'
-import { List, ListItem } from 'material-ui/List';
+// import { List, ListItem } from 'material-ui/List';
 
-import {
+/* import {
   grey900
-} from 'material-ui/styles/colors';
+} from 'material-ui/styles/colors'; */
 
 export default class Dview extends React.Component {
   constructor (props) {
@@ -26,4 +26,3 @@ export default class Dview extends React.Component {
     return <div style={{ height: 200, overflowY: 'auto' }}><ul>{this.state.list}</ul></div>
   }
 }
-

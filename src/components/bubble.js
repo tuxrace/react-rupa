@@ -25,7 +25,6 @@ const triRight = {
 const style = {
   position: 'relative',
   width: 'auto',
-  padding: '0px',
   background: '#E53935',
   borderRadius: '5px',
   padding: '12px',
