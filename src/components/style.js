@@ -10,7 +10,8 @@ export const flex = {
   flexFlow: 'column',
   width: '100%',
   height: 'calc(100% - 5px)',
-  position: 'absolute'
+  position: 'absolute',
+  backgroundColor:'#ddd'
 }
 
 export const style = {

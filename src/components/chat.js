@@ -115,10 +115,10 @@ export default class Chat extends Component {
         {this.state.interim ? this.state.interim : null}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', width: '100vw' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100vw', padding:'2em', background:'#fff' }}>
         <Text {...textProps} />
         <RaisedButton style={{ height: 60, margin: 3 }} secondary label="Submit Message" onClick={this.handleSend.bind(this)} icon={<ActionCheckCircle />} />
-        <RaisedButton style={{ height: 60, margin: 3, width: 180 }} secondary label="Voice" icon={this.state.voice} onClick={this.handleStart.bind(this)} />
+        <RaisedButton style={{ height: 60, margin: 3 }} secondary label="Use Voice" icon={this.state.voice} onClick={this.handleStart.bind(this)} />
       </div>
     </Paper>)
   }
