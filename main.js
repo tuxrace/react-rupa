@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import Chat from './src/components/chat.js'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-
 class App extends React.Component {
     render() {
         return <MuiThemeProvider>

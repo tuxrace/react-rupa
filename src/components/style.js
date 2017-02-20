@@ -1,7 +1,7 @@
 export const autoScroll = {
   minHeight: 300,
   overflowY: 'scroll',
-  padding: 20,
+  padding: '4em',
   flex: 1
 }
 

@@ -100,10 +100,12 @@ export default class Chat extends Component {
 
     const textProps = {
       style: { padding: 8 },
-      hintText: "Type something to talk to Rupa...",
       fullWidth: true,
       onKeyPress: this.handleEnter.bind(this),
       onChange: this.handleTextChange.bind(this),
+      floatingLabelText: 'Type something to talk to Rupa...',
+      floatingLabelStyle: { color:'red' },
+      floatingLabelFocusStyle: { color:'red' }
     }
     return (<Paper zDepth={1} style={flex}>
       <AppBar style={style} title="RUPA" iconElementLeft={<IconButton><ActionFace /></IconButton>} />
@@ -115,7 +117,7 @@ export default class Chat extends Component {
         {this.state.interim ? this.state.interim : null}
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100vw', padding:'2em', background:'#fff' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-around', width: '100vw', padding: '2em', background: '#fff' }}>
         <Text {...textProps} />
         <RaisedButton style={{ height: 60, margin: 3 }} secondary label="Submit Message" onClick={this.handleSend.bind(this)} icon={<ActionCheckCircle />} />
         <RaisedButton style={{ height: 60, margin: 3 }} secondary label="Use Voice" icon={this.state.voice} onClick={this.handleStart.bind(this)} />
