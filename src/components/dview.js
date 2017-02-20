@@ -27,7 +27,7 @@ class Dview extends React.Component {
 }
 
 Dview.propTypes = {
-  text: React.propTypes.string
+  text: React.PropTypes.string
 }
 
 export default Dview

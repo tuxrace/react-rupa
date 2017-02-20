@@ -46,16 +46,16 @@ const tri = {
 
 //const temp = props => <div style={props.right === true ? tri : triRight} />
 
-const Bubble = props => (
+const Bubble = ({ right, text }) => (
   <div>
-    <div style={props.right === true ? styleRight : style}>{props.text}</div>
-    <div style={props.right === true ? triRight : tri} />
+    <div style={right ? styleRight : style}>{text}</div>
+    <div style={right ? triRight : tri} />
   </div>
 )
 
 Bubble.propTypes = {
-  right: React.propTypes.boolean,
-  text: React.propTypes.string 
+  right: React.PropTypes.bool,
+  text: React.PropTypes.string 
 }
 
 export default Bubble

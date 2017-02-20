@@ -8,8 +8,8 @@ import {
 } from 'material-ui/styles/colors';
 
 const Message = function ({ chats }) {
-console.log(chats)
   const list = chats.map((x, index) => {
+    console.log(x)
     const bot = (x.sender === 'bot') 
     const html = (x.type === 'html')
     const view = html ? <Dview right={false} text={x.data} /> : <Bubble right={!bot} text={x.data} />
