@@ -28,7 +28,7 @@ if (recognizing) {
 }
 
 const localstate = {};
-socket.emit('system', { sender: 'system', data: 'initialize' })
+//socket.emit('system', { sender: 'system', data: 'initialize' })
 
 export default class Chat extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ export default class Chat extends Component {
   componentDidMount() {
     injectTapEventPlugin()
     socket.on('message', this.handleMessage.bind(this))
-    socket.emit('system', { sender: 'system', data: 'initialize' })
+    //socket.emit('system', { sender: 'system', data: 'initialize' })
   }
   componentDidUpdate() {
     const div = this.divList

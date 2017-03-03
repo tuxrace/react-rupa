@@ -1,13 +1,11 @@
 var webpack = require('webpack')
-var path = require('path')
 
 module.exports = {
-    entry: [
-        "webpack-dev-server/client?http://localhost:8080", // websocket
-        "webpack/hot/only-dev-server", // hot loader
-        "./main.js" // entry file
-    ],
-    output: { path: __dirname, filename: 'bundle.js' },    
+    entry: {
+        app: "./main.js", // entry file
+        vendor: ["react","react-dom"]
+    },
+    output: { path: __dirname, filename: '[name].bundle.js' },    
     module: {
         loaders: [
             {
@@ -18,7 +16,7 @@ module.exports = {
         ]
     },
     devtool:'cheap-module-eval-source-map',
-    plugins:[
-        new webpack.HotModuleReplacementPlugin()
-    ]
+    plugins: [
+    new webpack.optimize.CommonsChunkPlugin("vendor")
+  ]
 }
