@@ -2,6 +2,7 @@
 ### Remarkable Understanding Personal Agent.
     
    Rupa is a messaging app chat bot, that can perform simple taks, and give out instant answers to common inquiries.
+   
 ### Working demo
 [https://tuxrace.github.io/react-rupa/](https://tuxrace.github.io/react-rupa/)
     
@@ -10,6 +11,7 @@
  - Node.js
  - Socket.io
  - Bluemix
+ 
  
 ### Serve
 
